@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iris-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: iris
+  template:
+    metadata:
+      labels:
+        app: iris
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: iris-prediction
+        image: doogeemodulny/iris-prediction:latest
+        ports:
+        - containerPort: 5000
+
